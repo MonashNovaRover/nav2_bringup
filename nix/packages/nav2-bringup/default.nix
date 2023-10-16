@@ -1,5 +1,6 @@
 { lib
 , nav2-bringup
+, nav2-common
 , xacro
 , robot-state-publisher
 , navigation2
@@ -21,6 +22,7 @@ nav2-bringup.overrideAttrs ( { ... }: {
   passthru.workspacePackages = {
     inherit
       xacro
+      nav2-common
       robot-state-publisher
       navigation2
       turtlebot3-gazebo
