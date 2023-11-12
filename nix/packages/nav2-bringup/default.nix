@@ -16,7 +16,7 @@ nav2-bringup.overrideAttrs ( { ... }: {
   src = builtins.path rec {
     name = "nova-nav2-bringup-source";
     path = ../../..;
-    filter = lib.novaSourceFilter [ ] path;
+    filter = lib.novaSourceFilter [ "!worlds/**" ] path;
   };
   
   passthru.workspacePackages = {
