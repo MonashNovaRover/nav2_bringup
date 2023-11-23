@@ -29,6 +29,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     # Get the launch directory
     bringup_dir = get_package_share_directory('nova_nav2_bringup')
+    nova_core_dir = get_package_share_directory('core')
     launch_dir = os.path.join(bringup_dir, 'launch')
 
     # Create the launch configuration variables
@@ -169,7 +170,7 @@ def generate_launch_description():
         cmd=['gzclient'],
         cwd=[launch_dir], output='screen')
 
-    urdf = os.path.join(bringup_dir, 'urdf', 'turtlebot3_waffle.urdf')
+    urdf = os.path.join(nova_core_dir, 'urdf', 'rover.urdf')
     with open(urdf, 'r') as infp:
         robot_description = infp.read()
 
