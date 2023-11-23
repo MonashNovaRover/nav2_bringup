@@ -156,8 +156,8 @@ def generate_launch_description():
 
     default_model_path = nova_core_dir / 'urdf/rover.urdf.xacro'
     declare_robot_model_cmd = DeclareLaunchArgument(
-        'robot_model',
-        default_value=default_model_path.as_posix(),
+        name='robot_model',
+        default_value=str(default_model_path),
         description='Full path to robot model file to spawn the robot in gazebo')
     robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('robot_model')]),
             value_type=str)
@@ -175,13 +175,13 @@ def generate_launch_description():
 
     # Specify the actions
     start_gazebo_server_cmd = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([gazebo_dir, '/gzserver.launch.py']),
+        PythonLaunchDescriptionSource([gazebo_dir, '/launch/gzserver.launch.py']),
         condition=IfCondition(use_simulator),
-        launch_arguments={"world": world}
+        launch_arguments={"world": world}.items()
     )
 
     start_gazebo_client_cmd = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([gazebo_dir, '/gzclient.launch.py']),
+        PythonLaunchDescriptionSource([gazebo_dir, '/launch/gzclient.launch.py']),
         condition=IfCondition(PythonExpression(
             [use_simulator, ' and not ', headless]
         ))
