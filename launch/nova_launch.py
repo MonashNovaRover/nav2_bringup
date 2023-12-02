@@ -54,7 +54,7 @@ def generate_launch_description():
     world = LaunchConfiguration('world')
     pose = {'x': LaunchConfiguration('x_pose', default='-2.00'),
             'y': LaunchConfiguration('y_pose', default='-0.50'),
-            'z': LaunchConfiguration('z_pose', default='0.01'),
+            'z': LaunchConfiguration('z_pose', default='5.01'),
             'R': LaunchConfiguration('roll', default='0.00'),
             'P': LaunchConfiguration('pitch', default='0.00'),
             'Y': LaunchConfiguration('yaw', default='0.00')}
@@ -146,7 +146,7 @@ def generate_launch_description():
         #              https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/91
         # default_value=os.path.join(get_package_share_directory('turtlebot3_gazebo'),
         # worlds/turtlebot3_worlds/waffle.model')
-        default_value=os.path.join(bringup_dir, 'worlds', 'world_only.model'),
+        default_value=os.path.join(bringup_dir, 'worlds', 'model.sdf'),
         description='Full path to world model file to load')
 
     declare_robot_name_cmd = DeclareLaunchArgument(
